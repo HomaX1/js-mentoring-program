@@ -1,8 +1,6 @@
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const merge = require('webpack-merge');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-const webpackConfig = require('./webpack.config');
+const webpackCommon = require('./webpack.common.js');
 
-module.exports = merge(webpackConfig, {
+module.exports = merge(webpackCommon, {
     mode: 'production'
 });
