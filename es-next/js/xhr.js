@@ -6,21 +6,21 @@ export default class Xhr {
         return this._request(url, {method: 'GET'});
     }
 
-    // post(url, data) {
-    //     data = JSON.stringify(data);
-    //     const options = Object.assign({method: 'POST'}, {body: data});
-    //     return this._request(url, options);
-    // }
-    //
-    // put(url, data) {
-    //     data = JSON.stringify(data);
-    //     const options = Object.assign({method: 'PUT'}, {body: data});
-    //     return this._request(url, options);
-    // }
-    //
-    // delete(url) {
-    //     return this._request(url, {method: 'DELETE'});
-    // }
+    post(url, data) {
+        data = JSON.stringify(data);
+        const options = Object.assign({method: 'POST'}, {body: data});
+        return this._request(url, options);
+    }
+
+    put(url, data) {
+        data = JSON.stringify(data);
+        const options = Object.assign({method: 'PUT'}, {body: data});
+        return this._request(url, options);
+    }
+
+    delete(url) {
+        return this._request(url, {method: 'DELETE'});
+    }
 
     async _request(url, options) {
         return await fetch(url, options)
@@ -34,12 +34,17 @@ export default class Xhr {
 const xhr = new Xhr();
 
 (async () => {
-    const getResult = await xhr.get('https://swapi.co/api');
-    console.log(getResult);
+    const data = await xhr.get('https://swapi.co/api/');
+    const links = Object.values(data);
 
-    // const postResult = await xhr.post('https://swapi.co/api/people/2', {name: 'Leia'});
-    // console.log(postResult);
-    //
+    Promise.all(links.map(item => xhr.get(item)))
+        .then(results => {
+            console.log(results);
+        });
+
+    const postResult = await xhr.post('https://swapi.co/api/people/2', {name: 'Leia'});
+    console.log(postResult);
+
     // const putResult = await xhr.put('https://swapi.co/api/people/3', {name: 'Chui'});
     // console.log(putResult);
     //
