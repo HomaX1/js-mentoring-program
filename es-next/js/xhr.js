@@ -31,9 +31,8 @@ export default class Xhr {
     }
 }
 
-const xhr = new Xhr();
-
 (async () => {
+    const xhr = new Xhr();
     const data = await xhr.get('https://swapi.co/api/');
     const links = Object.values(data);
 
