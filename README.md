@@ -2,3 +2,5 @@
 
 ## Completed tasks:
 * Webpack
+* ES.Next
+* Typescript
