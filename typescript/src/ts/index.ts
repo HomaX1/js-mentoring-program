@@ -1,5 +1,9 @@
-import Request from './request.ts';
+import Request from './request';
+import PeopleModel from './interfaces/people.model';
 
-const request = new Request();
+(async () => {
+    const request = new Request<PeopleModel>();
+    const result = await request.get('https://swapi.co/api/people/1');
 
-request.awdaw();
+    request.showData(result);
+})();
