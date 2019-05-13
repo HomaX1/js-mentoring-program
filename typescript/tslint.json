@@ -9,7 +9,6 @@
       true,
       "single"
     ],
-    "indent": [true, "spaces", 2],
     "no-console": false
   },
   "rulesDirectory": []
