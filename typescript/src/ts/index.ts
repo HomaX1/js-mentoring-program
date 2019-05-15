@@ -3,7 +3,7 @@ import PeopleModel from './interfaces/people.model';
 
 (async () => {
     const request = new Request<PeopleModel>();
-    const result = await request.get('https://swapi.co/api/people/1');
+    const result = await request.get<PeopleModel>('https://swapi.co/api/people/1');
 
-    request.showData(result);
+    console.log({name: result.name, films: result.films});
 })();
