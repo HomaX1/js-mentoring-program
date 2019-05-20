@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint index.js"
+    "lint": "eslint index.js",
+    "plato": "plato -r -d report -t 'Start_page' -x .json index.js"
   },
   "author": "",
   "license": "ISC",
