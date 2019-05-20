@@ -1,0 +1,17 @@
+{
+  "name": "infrastructure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint index.js",
+    "plato": "plato -r -d report -t 'Start_page' index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.16.0",
+    "plato": "^1.7.0"
+  }
+}
