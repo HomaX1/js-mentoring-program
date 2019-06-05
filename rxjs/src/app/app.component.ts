@@ -9,12 +9,12 @@ import { JsonPlaceholderService } from './services/json-placeholder.service';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private jsonPlaceholderService: JsonPlaceholderService) {
+  posts = [];
 
-  }
+  constructor(private jsonPlaceholderService: JsonPlaceholderService) {}
 
   ngOnInit(): void {
     this.jsonPlaceholderService.get('https://jsonplaceholder.typicode.com/posts')
-      .subscribe(result => console.log(result));
+      .subscribe(results => this.posts = results);
   }
 }

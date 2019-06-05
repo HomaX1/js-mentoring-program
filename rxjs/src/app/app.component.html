@@ -2,3 +2,14 @@
   <h1 class="header__title">RxJs home task</h1>
 </header>
 
+<section class="posts">
+  <h2 class="posts__title">List of posts</h2>
+  <ul class="posts-list">
+    <li class="posts-list-item" *ngFor="let post of posts">
+      <h3 class="posts-list-item__title">{{post.id}}. {{post.title}}</h3>
+      <p class="posts-list-item__text posts-list-item__text-font">Post was written user by {{post.userId}}</p>
+      <p class="posts-list-item__text">{{post.body}}</p>
+    </li>
+  </ul>
+</section>
+
