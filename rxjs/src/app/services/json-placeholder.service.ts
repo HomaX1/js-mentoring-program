@@ -11,7 +11,7 @@ export class JsonPlaceholderService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public get(url: string): Observable<PostModel[]> {
-    return this.httpClient.get<PostModel[]>(url);
+  public getPosts(): Observable<PostModel[]> {
+    return this.httpClient.get<PostModel[]>('https://jsonplaceholder.typicode.com/posts');
   }
 }

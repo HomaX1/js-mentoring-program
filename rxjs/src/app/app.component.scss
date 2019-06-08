@@ -5,6 +5,49 @@
 .posts {
   margin: 20px 20px 0;
 
+  &__container {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__button {
+    text-transform: uppercase;
+    display: block;
+    width: 300px;
+    height: 35px;
+    background-color: #000;
+    color: #fff;
+    border: 1px solid #000;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: all .3s;
+
+    &:hover,
+    &:focus {
+      background-color: #fff;
+      color: #000;
+      outline: none;
+    }
+  }
+
+  &__label {
+    margin-top: 40px;
+  }
+
+  &__input {
+    display: block;
+    width: 300px;
+    height: 35px;
+    border: 1px solid black;
+    margin: 20px auto 0;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
   &__title {
     text-align: center;
     margin-top: 50px;
@@ -13,7 +56,7 @@
   &-list {
     list-style-type: none;
     padding: 0;
-    margin: 0;
+    margin: 50px 0 0;
 
     &-item {
       &:not(:first-child) {

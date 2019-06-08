@@ -3,7 +3,16 @@
 </header>
 
 <section class="posts">
-  <h2 class="posts__title">List of posts</h2>
+  <div class="posts__container">
+    <div class="posts__wrap">
+      <span class="posts__text">1. Click the button to see posts</span>
+      <button class="posts__button" (click)="subject.next();">Click me!</button>
+    </div>
+    <label class="posts__label">
+      <span class="posts__text">2. Enter any words from posts title to filter the posts</span>
+      <input class="posts__input" (keyup)="onKeyUp($event)">
+    </label>
+  </div>
   <ul class="posts-list">
     <li class="posts-list-item" *ngFor="let post of posts">
       <h3 class="posts-list-item__title">{{post.id}}. {{post.title}}</h3>
