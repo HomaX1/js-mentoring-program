@@ -21,6 +21,9 @@ export class AppComponent implements OnInit {
   constructor(private jsonPlaceholderService: JsonPlaceholderService) {}
 
   ngOnInit(): void {
+  }
+
+  onClickButton() {
     this.subject.pipe(
       switchMap(() => this.jsonPlaceholderService.getPosts())
     ).subscribe(resp => {
@@ -28,17 +31,21 @@ export class AppComponent implements OnInit {
       this.postsLocal = resp;
     });
 
-    this.subjectPosts.pipe(
-      debounceTime(1000),
-      map((event) => {
-        return this.postsLocal.filter((post) => {
-          return post.title.includes(event.target.value);
-        });
-      })
-    ).subscribe(resp => this.posts = resp);
+    this.subject.next();
   }
 
   onKeyUp(event: any): void {
+    this.subjectPosts.pipe(
+      debounceTime(1000),
+      map((event) => {
+        if(this.postsLocal) {
+          return this.postsLocal.filter((post) => {
+            return post.title.includes(event.target.value);
+          });
+        }
+      })
+    ).subscribe(resp => this.posts = resp);
+
     this.subjectPosts.next(event);
   }
 }
