@@ -1,0 +1,12 @@
+.to-do-input {
+  width: 100%;
+  border: none;
+}
+
+.to-do-input:focus {
+  outline: none;
+}
+
+.fa-plus {
+  margin-right: 10px;
+}

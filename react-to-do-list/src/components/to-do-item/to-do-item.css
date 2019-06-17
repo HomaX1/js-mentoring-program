@@ -1,0 +1,23 @@
+.to-do-item {
+  display: flex;
+  align-items: center;
+}
+
+.fa-check-square,
+.fa-square {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.to-do-text {
+  flex-grow: 1;
+}
+
+.icons__item {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.icons__item:last-child {
+  margin-right: 0;
+}
