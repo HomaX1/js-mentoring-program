@@ -1,9 +1,12 @@
 import { createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import rootReducer from './reducers/index';
 
-const configureStore = () => (
+const configureStore = preloadedState => (
   createStore(
-    rootReducer
+    rootReducer,
+    preloadedState,
+    composeWithDevTools()
   )
 );
 

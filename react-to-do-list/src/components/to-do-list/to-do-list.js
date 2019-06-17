@@ -1,26 +1,75 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import store from '../../store';
 
 import './to-do-list.css';
 
+import { fetchTask, addTask, removeTask, completeTask } from '../../actions/actionCreator';
 import ToDoItem from '../to-do-item/to-do-item';
 import ToDoInput from '../../components/to-do-input/to-do-input';
 
-const ToDoList = ({tasksList}) => (
-  <ul className="list-group to-do-list">
-    {tasksList.map(({id, text, isCompleted}) => (
-      <ToDoItem key={id} text={text} isCompleted={isCompleted}/>
-    ))}
-    <ToDoInput/>
-  </ul>
-);
+class ToDoList extends Component {
 
-ToDoList.propTypes = {
-  tasksList: PropTypes.array,
-};
+  state = {
+    taskText: ''
+  };
 
-ToDoList.defaultProps = {
-  tasksList: [],
-};
+  static propTypes = {
+    tasksList: PropTypes.array,
+    removeTask: PropTypes.func,
+    completeTask: PropTypes.func,
+  };
 
-export default ToDoList;
+  static defaultProps = {
+    tasksList: [],
+    removeTask: () => {},
+    completeTask: () => {},
+  };
+
+  componentDidMount() {
+    fetch('http://localhost:3004/data')
+      .then(response => response.json())
+      .then(data => store.dispatch(fetchTask(data)));
+  }
+
+  handleInputChange = ({ target: { value } }) => {
+    this.setState({
+      taskText: value,
+    })
+  };
+
+  addTask = ({ key }) => {
+    const { taskText } = this.state;
+
+    if (taskText.length > 2 && key === 'Enter') {
+      const { addTask } = this.props;
+
+      addTask((new Date()).getTime(), taskText, false);
+
+      this.setState({
+        taskText: '',
+      })
+
+    }
+  };
+
+  render() {
+    const {tasks, removeTask, completeTask} = this.props;
+    const {taskText} = this.state;
+
+    return (
+      <ul className="list-group to-do-list">
+        {tasks.map(({id, text, isCompleted}) => (
+          <ToDoItem completeTask={completeTask} removeTask={removeTask} id={id} key={id} text={text} isCompleted={isCompleted}/>
+        ))}
+        <ToDoInput onKeyPress={this.addTask} onChange={this.handleInputChange} value={taskText}/>
+      </ul>
+    );
+
+  }
+}
+
+export default connect(state => ({
+  ...state.tasks,
+}), { addTask, removeTask, completeTask })(ToDoList);
