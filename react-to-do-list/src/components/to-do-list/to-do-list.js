@@ -55,14 +55,19 @@ class ToDoList extends Component {
   };
 
   render() {
-    const {tasks, removeTask, completeTask} = this.props;
+    const {tasks, removeTask, completeTask, searchInput} = this.props;
     const {taskText} = this.state;
 
     return (
       <ul className="list-group to-do-list">
-        {tasks.map(({id, text, isCompleted}) => (
-          <ToDoItem completeTask={completeTask} removeTask={removeTask} id={id} key={id} text={text} isCompleted={isCompleted}/>
-        ))}
+        {tasks.map(({id, text, isCompleted}) => {
+          return (text.toLowerCase().includes(searchInput))
+            ? <ToDoItem completeTask={completeTask}
+                        removeTask={removeTask}
+                        id={id} key={id} text={text}
+                        isCompleted={isCompleted}/>
+            : '';
+        })}
         <ToDoInput onKeyPress={this.addTask} onChange={this.handleInputChange} value={taskText}/>
       </ul>
     );
@@ -71,5 +76,5 @@ class ToDoList extends Component {
 }
 
 export default connect(state => ({
-  ...state.tasks,
+  ...state.tasks
 }), { addTask, removeTask, completeTask })(ToDoList);

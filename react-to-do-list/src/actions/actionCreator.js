@@ -1,4 +1,4 @@
-import { FETCH_TASKS, ADD_TASK, REMOVE_TASK, COMPLETE_TASK } from '../constants';
+import { FETCH_TASKS, ADD_TASK, REMOVE_TASK, COMPLETE_TASK, SEARCH_TASK } from '../constants';
 
 export const fetchTask = (data) => ({
     type: FETCH_TASKS,
@@ -20,4 +20,9 @@ export const removeTask = id => ({
 export const completeTask = id => ({
   type: COMPLETE_TASK,
   id
+});
+
+export const searchTask = (text) => ({
+  type: SEARCH_TASK,
+  text
 });
