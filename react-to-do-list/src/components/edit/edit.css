@@ -1,0 +1,35 @@
+.edit {
+    text-align: center;
+}
+
+.edit-label {
+    position: relative;
+}
+
+.edit-input {
+    width: 300px;
+    height: 40px;
+    padding-left: 10px;
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+}
+
+.edit-input:focus {
+    outline: none;
+}
+
+.edit-icons {
+    display: inline-flex;
+    position: absolute;
+    top: 14px;
+    right: 10px;
+}
+
+.edit-icons__item {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.edit-icons__item:last-child {
+    margin-right: 0;
+}

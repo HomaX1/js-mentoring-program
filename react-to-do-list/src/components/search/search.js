@@ -11,6 +11,17 @@ class Search extends Component {
     search: ''
   };
 
+    static propTypes = {
+        onChange: PropTypes.func,
+        value: PropTypes.string,
+    };
+
+
+    static defaultProps = {
+        onChange: () => {},
+        value: '',
+    };
+
   searchTasks= (e) => {
     this.setState({
       search: e.target.value,
@@ -34,18 +45,6 @@ class Search extends Component {
       </div>
     );
   }
-
-  static propTypes = {
-    onChange: PropTypes.func,
-    value: PropTypes.string,
-  };
-
-
-  static defaultProps = {
-    onChange: () => {
-    },
-    value: '',
-  };
 }
 
 export default connect(state => ({
