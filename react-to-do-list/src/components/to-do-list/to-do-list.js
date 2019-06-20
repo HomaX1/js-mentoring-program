@@ -68,7 +68,10 @@ class ToDoList extends Component {
                         isCompleted={isCompleted}/>
             : '';
         })}
-        <ToDoInput onKeyPress={this.addTask} onChange={this.handleInputChange} value={taskText}/>
+          {!searchInput
+              ? <ToDoInput onKeyPress={this.addTask} onChange={this.handleInputChange} value={taskText}/>
+              : false
+          }
       </ul>
     );
 
