@@ -3,8 +3,12 @@ import { NavLink } from 'react-router-dom';
 import './tabs.css';
 
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import {archiveTask} from '../../actions/actionCreator';
 
-const Tabs = ({archive}) => (
+const Tabs = ({archive}) => {
+  console.log(archive, 'archive');
+  return (
   <nav>
     <ul className='nav nav-tabs'>
       <li className='nav-item'>
@@ -18,14 +22,16 @@ const Tabs = ({archive}) => (
       </li>
     </ul>
   </nav>
-);
+)};
 
 Tabs.propTypes = {
-  archiveTask: PropTypes.func
+  archive: PropTypes.array
 };
 
 Tabs.defaultProps = {
-  archiveTask: () => {}
+  archive: []
 };
 
-export default Tabs;
+export default connect(state => ({
+  ...state.archive
+}), { archiveTask })(Tabs);
