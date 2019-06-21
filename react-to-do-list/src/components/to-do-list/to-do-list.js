@@ -5,7 +5,7 @@ import store from '../../store';
 
 import './to-do-list.css';
 
-import { fetchTask, addTask, removeTask, completeTask } from '../../actions/actionCreator';
+import { fetchTask, addTask, removeTask, completeTask, archiveTask } from '../../actions/actionCreator';
 import ToDoItem from '../to-do-item/to-do-item';
 import ToDoInput from '../../components/to-do-input/to-do-input';
 
@@ -19,12 +19,14 @@ class ToDoList extends Component {
     tasksList: PropTypes.array,
     removeTask: PropTypes.func,
     completeTask: PropTypes.func,
+    archiveTask: PropTypes.func
   };
 
   static defaultProps = {
     tasksList: [],
     removeTask: () => {},
     completeTask: () => {},
+    archiveTask: () => {}
   };
 
   componentDidMount() {
@@ -55,7 +57,7 @@ class ToDoList extends Component {
   };
 
   render() {
-    const {tasks, removeTask, completeTask, searchInput} = this.props;
+    const {tasks, removeTask, completeTask, searchInput, archiveTask} = this.props;
     const {taskText} = this.state;
 
     return (
@@ -65,7 +67,8 @@ class ToDoList extends Component {
             ? <ToDoItem completeTask={completeTask}
                         removeTask={removeTask}
                         id={id} key={id} text={text}
-                        isCompleted={isCompleted}/>
+                        isCompleted={isCompleted}
+                        archiveTask={archiveTask}/>
             : '';
         })}
           {!searchInput
@@ -80,4 +83,4 @@ class ToDoList extends Component {
 
 export default connect(state => ({
   ...state.tasks
-}), { addTask, removeTask, completeTask })(ToDoList);
+}), { addTask, removeTask, completeTask, archiveTask })(ToDoList);

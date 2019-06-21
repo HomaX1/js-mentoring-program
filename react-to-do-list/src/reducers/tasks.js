@@ -1,4 +1,11 @@
-import { FETCH_TASKS, ADD_TASK, REMOVE_TASK, COMPLETE_TASK, SEARCH_TASK } from '../constants';
+import {
+  FETCH_TASKS,
+  ADD_TASK,
+  REMOVE_TASK,
+  COMPLETE_TASK,
+  SEARCH_TASK,
+  ARCHIVE_TASK
+} from '../constants';
 
 const defaultState = {
   tasks: [],
@@ -6,7 +13,7 @@ const defaultState = {
   searchInput: ''
 };
 
-const tasks = (state = defaultState, { id, text, isCompleted, type, data }) => {
+const tasks = (state = defaultState, {id, text, isCompleted, type, data}) => {
   switch (type) {
     case FETCH_TASKS :
       return {
@@ -37,6 +44,17 @@ const tasks = (state = defaultState, { id, text, isCompleted, type, data }) => {
       return {
         ...state,
         searchInput: text
+      };
+    case ARCHIVE_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.filter(task => {
+          if (task.id === id) {
+            console.log(task);
+            state.archive.push(task);
+          }
+          return task.id !== id;
+        })
       };
     default:
       return state;
