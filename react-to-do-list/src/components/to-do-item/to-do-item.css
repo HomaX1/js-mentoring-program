@@ -14,10 +14,14 @@
 }
 
 .icons__item {
+  color: #212529;
   margin-right: 15px;
   cursor: pointer;
 }
 
+.icons__item:hover {
+  color: #212529;
+}
 .icons__item:last-child {
   margin-right: 0;
 }

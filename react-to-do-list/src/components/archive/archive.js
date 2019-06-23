@@ -1,34 +1,37 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 import './archive.css';
-import {archiveTask} from '../../actions/actionCreator';
+
+import {unarchivingTask} from '../../actions/actionCreator';
 import Title from '../../components/title/title';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 
 class Archive extends Component {
   static propTypes = {
-    archiveTask: PropTypes.func
+    unarchivingTask: PropTypes.func
   };
 
   static defaultProps = {
-    archiveTask: () => {}
+    unarchivingTask: () => {}
   };
 
   render() {
-    const {archive, archiveTask} = this.props;
-    console.log(archive);
+    const {archive, unarchivingTask} = this.props;
+
     return (
       <div className="archive">
         <Title title="List of archive tasks"/>
         <ul className="list-group to-do-list">
 
-          {archive
-            ? archive.map(({id, text}) => {
+          {archive.length
+            ? archive.map(({id, text, isCompleted}) => {
               return (
-                <li className="list-group-item to-do-item" archiveTask={archiveTask} id={id} key={id} text={text}>
+                <li className="list-group-item to-do-item" id={id} key={id}>
                   <span className="to-do-text">{text}</span>
-                  <button type="button" className="button btn btn-outline-dark">Unarchive</button>
+                  <button className="button btn btn-outline-dark" type="button"
+                          onClick={() => unarchivingTask({id, text, isCompleted})}>Unarchive
+                  </button>
                 </li>
               );
             })
@@ -42,5 +45,5 @@ class Archive extends Component {
 }
 
 export default connect(state => ({
-  ...state.archive,
-}), {archiveTask})(Archive);
+  archive: state.tasks.archive,
+}), {unarchivingTask})(Archive);

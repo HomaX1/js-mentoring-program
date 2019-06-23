@@ -11,16 +11,17 @@ class Search extends Component {
     search: ''
   };
 
-    static propTypes = {
-        onChange: PropTypes.func,
-        value: PropTypes.string,
-    };
+  static propTypes = {
+    onChange: PropTypes.func,
+    value: PropTypes.string,
+  };
 
 
-    static defaultProps = {
-        onChange: () => {},
-        value: '',
-    };
+  static defaultProps = {
+    onChange: () => {
+    },
+    value: '',
+  };
 
   searchTasks= (e) => {
     this.setState({

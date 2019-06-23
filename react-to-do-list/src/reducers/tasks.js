@@ -4,23 +4,27 @@ import {
   REMOVE_TASK,
   COMPLETE_TASK,
   SEARCH_TASK,
-  ARCHIVE_TASK
+  ARCHIVE_TASK,
+  UNARCHIVING_TASK,
+  EDIT_TASK,
+  CONFIRM_EDIT_TASK
 } from '../constants';
 
 const defaultState = {
   tasks: [],
   archive: [],
-  searchInput: ''
+  searchInput: '',
+  edit: {}
 };
 
 const tasks = (state = defaultState, {id, text, isCompleted, type, data}) => {
   switch (type) {
-    case FETCH_TASKS :
+    case FETCH_TASKS:
       return {
         ...state,
         tasks: data
       };
-    case ADD_TASK :
+    case ADD_TASK:
       return {
         ...state,
         tasks: state.tasks.concat([{id, text, isCompleted}])
@@ -48,13 +52,30 @@ const tasks = (state = defaultState, {id, text, isCompleted, type, data}) => {
     case ARCHIVE_TASK:
       return {
         ...state,
-        tasks: state.tasks.filter(task => {
+        tasks: state.tasks.filter(task => task.id !== id),
+        archive: state.archive.concat([{id, text}])
+      };
+    case UNARCHIVING_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.concat([{id, text, isCompleted: false}]),
+        archive: state.archive.filter(task => task.id !== id)
+      };
+    case EDIT_TASK:
+      return {
+        ...state,
+        edit: state.edit = {id, text, isCompleted}
+      };
+    case CONFIRM_EDIT_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.map(task => {
           if (task.id === id) {
-            console.log(task);
-            state.archive.push(task);
+            return {id, text, isCompleted};
           }
-          return task.id !== id;
-        })
+          return task;
+        }),
+        edit: ''
       };
     default:
       return state;
