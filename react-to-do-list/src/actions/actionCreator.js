@@ -11,8 +11,8 @@ import {
 } from '../constants';
 
 export const fetchTask = (data) => ({
-    type: FETCH_TASKS,
-    data
+  type: FETCH_TASKS,
+  data
 });
 
 export const addTask = (id, text, isCompleted) => ({

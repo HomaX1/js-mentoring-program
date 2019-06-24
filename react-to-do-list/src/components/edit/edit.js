@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import store from '../../store';
 
 import './edit.css';
 import {confirmEditTask} from '../../actions/actionCreator';
 import Title from '../../components/title/title';
-import store from '../../store';
 
 class Edit extends Component {
 

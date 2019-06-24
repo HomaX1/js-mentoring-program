@@ -15,9 +15,6 @@ class Tabs extends Component {
           <li className='nav-item'>
             <NavLink className='nav-link' to='/archive'>Archive</NavLink>
           </li>
-          {/*<li className='nav-item'>*/}
-            {/*<NavLink className='nav-link nav-link-edit' to='/edit'>Edit</NavLink>*/}
-          {/*</li>*/}
         </ul>
       </nav>
     )

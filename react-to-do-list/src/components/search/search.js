@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-
-import {searchTask} from '../../actions/actionCreator';
-import './search.css';
 import {connect} from 'react-redux';
 import store from '../../store';
+
+import './search.css';
+import {searchTask} from '../../actions/actionCreator';
 
 class Search extends Component {
   state = {
@@ -18,8 +18,7 @@ class Search extends Component {
 
 
   static defaultProps = {
-    onChange: () => {
-    },
+    onChange: () => {},
     value: '',
   };
 

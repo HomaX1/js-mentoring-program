@@ -26,7 +26,6 @@ class ToDoItem extends Component {
 
   render() {
     const {text, isCompleted, removeTask, id, completeTask, archiveTask, editTask} = this.props;
-    console.log();
 
     return (
       <li className="list-group-item to-do-item">
