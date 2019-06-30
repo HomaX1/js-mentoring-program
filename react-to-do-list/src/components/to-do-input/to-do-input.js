@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './to-do-input.css';
 
 const ToDoInput = ({ value, onChange, onKeyPress }) => (
-  <li className="list-group-item to-do-item">
+  <li className="list-group-item to-do-input-item">
     <i className="fas fa-plus"/>
     <input
       className="to-do-input"

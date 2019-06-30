@@ -3,6 +3,11 @@
   border: none;
 }
 
+.to-do-input-item {
+  display: flex;
+  align-items: center;
+}
+
 .to-do-input:focus {
   outline: none;
 }

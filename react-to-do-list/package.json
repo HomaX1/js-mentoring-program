@@ -15,7 +15,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject",
     "jsonServer": "json-server --watch src/mocks/tasks.json --port 3004"
   },
@@ -35,6 +35,11 @@
     ]
   },
   "devDependencies": {
-    "redux-devtools-extension": "^2.13.8"
+    "@babel/preset-env": "7.4.5",
+    "@babel/preset-react": "7.0.0",
+    "babel-jest": "24.8.0",
+    "jest": "24.7.1",
+    "react-test-renderer": "16.8.6",
+    "redux-devtools-extension": "2.13.8"
   }
 }
