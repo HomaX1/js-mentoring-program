@@ -10,7 +10,8 @@
     "react-redux": "7.1.0",
     "react-router-dom": "5.0.1",
     "react-scripts": "3.0.1",
-    "redux": "4.0.1"
+    "redux": "4.0.1",
+    "yarn": "^1.16.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -35,11 +36,28 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
     "@babel/preset-env": "7.4.5",
     "@babel/preset-react": "7.0.0",
+    "@types/jest": "^24.0.15",
     "babel-jest": "24.8.0",
-    "jest": "24.7.1",
-    "react-test-renderer": "16.8.6",
-    "redux-devtools-extension": "2.13.8"
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "fetch-mock": "^7.3.3",
+    "jest": "^24.7.1",
+    "jest-fetch-mock": "^2.1.2",
+    "react-addons-test-utils": "^15.6.2",
+    "react-test-renderer": "^16.8.6",
+    "redux-devtools-extension": "2.13.8",
+    "redux-mock-store": "^1.5.3"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/_mocks/styleMock.js"
+    },
+    "automock": false,
+    "setupFiles": [
+      "<rootDir>/_mocks/setupJest.js"
+    ]
   }
 }

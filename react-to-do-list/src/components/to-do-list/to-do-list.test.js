@@ -1,31 +1,33 @@
-import React from 'react';
-// import {shallow} from 'enzyme';
+import React from 'react'
+import {configure, mount} from 'enzyme';
+import configureStore from 'redux-mock-store';
+import Adapter from 'enzyme-adapter-react-16';
+import {Provider} from 'react-redux';
+
 import ToDoList from './to-do-list';
-import { create } from 'react-test-renderer';
-import store from '../../store';
+import {data as MockData} from '../../mocks/tasks';
+
+configure({adapter: new Adapter()});
 
 describe('Methods of to-do-list', () => {
-  it('should return 3 elements', () => {
-    const component = create(<ToDoList />);
-    const instance = component.getInstance();
-    console.log(instance);
-    /*ToDoList.componentDidMount();
-    expect(fetch).tohavebeencalledwith('http://localhost:3004/data');*/
+  const initialState = {tasks: MockData};
+  const mockStore = configureStore();
+  const props = {
+    tasks: MockData
+  };
+  let store, wrapper;
 
-    // global.fetch()
-    //   .then(response => response.json())
-    //   .then(
-    //     {
-    //       tasks: [
-    //         {id: 1, title: 'todo1'},
-    //         {id: 2, title: 'todo2'},
-    //         {id: 3, title: 'todo3'},
-    //       ]
-    //     }
-    //   );
-    //
-    // const list = document.querySelector('.to-do-list');
-    // console.log(list, 'giugig');
-    // expect(list.find('.to-do-item').length).toBe(3);
-  })
+  beforeEach(() => {
+    store = mockStore(initialState);
+    wrapper = mount(<Provider store={store}><ToDoList {...props}/></Provider>);
+  });
+
+  it('render the ToDoList component', () => {
+    expect(wrapper.find(ToDoList).length).toEqual(1)
+  });
+
+  it('component should has tasks in props', () => {
+    expect(wrapper.find(ToDoList).prop('tasks')).toBe(MockData);
+  });
+
 });
