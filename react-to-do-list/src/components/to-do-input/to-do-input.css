@@ -1,0 +1,17 @@
+.to-do-input {
+  width: 100%;
+  border: none;
+}
+
+.to-do-input-item {
+  display: flex;
+  align-items: center;
+}
+
+.to-do-input:focus {
+  outline: none;
+}
+
+.fa-plus {
+  margin-right: 10px;
+}
