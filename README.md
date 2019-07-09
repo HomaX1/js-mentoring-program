@@ -7,3 +7,4 @@
 * Infrastructure for new project development
 * RxJs
 * React To-Do list
+* JavaScript Security
